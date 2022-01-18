@@ -23,7 +23,7 @@ class TopHeader extends StatelessWidget {
                 ),
               ),
               Text(
-                'Skylar Gouse',
+                'Plabon Dhali',
                 style: TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.bold,
@@ -39,7 +39,7 @@ class TopHeader extends StatelessWidget {
                 child: Container(
                   width: _width*0.15,
                   height: _height*0.07,
-                  child: Image.asset('assets/images/man.jpg',fit: BoxFit.cover,),
+                  child: Image.asset('assets/images/abid.jpeg',fit: BoxFit.cover,),
                 ),
               ),
               Positioned(

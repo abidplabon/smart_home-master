@@ -1,19 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:smart_home/widgets/widgets.dart';
 
-Future<http.Response> onLED() async{
-   Future<http.Response> response = http.get('http://192.168.4.1/led/on');
-   print(response);
-  return response;
+
+
+final String appUrlOff = "http://192.168.4.1/led/off";
+final String appUrlON = "http://192.168.4.1/led/on";
+
+
+
+String onLED(){
+  var val = http.get(appUrlON);
+  return 'on';
 }
 
-Future<http.Response> offLED() async {
-  Future<http.Response> response =  http.get('http://192.168.4.1/led/off');
-  print(response);
-  // return http.get('http://192.168.4.1/led/off');
-  return response;
+ String offLED() {
+    var val = http.get(appUrlOff);
+    return 'off';
 }
 
 class LightingCard extends StatefulWidget {
@@ -87,6 +92,12 @@ class _LightingCardState extends State<LightingCard> {
                     onChanged: (value) {
                       setState(() {
                         _switchValue = value;
+                        if(_switchValue)
+                          status = 'Off';
+                         // onLED();
+                        else
+                          status = 'On';
+
                         status == 'On' ? status = onLED() : status = offLED();
                         status == 'On'
                             ? _color = Colors.white
@@ -94,6 +105,7 @@ class _LightingCardState extends State<LightingCard> {
                         status == 'On'
                             ? _colorText = Colors.black87
                             : _colorText = Colors.white;
+
                       });
                     },
                   ),
